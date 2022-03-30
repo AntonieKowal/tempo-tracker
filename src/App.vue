@@ -89,7 +89,7 @@ export default {
 		],
 		paths: {
 			'Song List': {
-				path: '/tempo-tracker/',
+				path: '/',
 				icon: 'playlist-music'
 			},
 			'Tempo Tap': {
