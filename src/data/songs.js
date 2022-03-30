@@ -1,3 +1,4 @@
+// Integrate spotify API if response contains BPM? Query for this data with an additional API?
 export default [
     {
         title: "First Date",
@@ -76,6 +77,18 @@ export default [
         artist: "38 Special",
         BPM: "128",
         duration: "4:41",
+    },
+    {
+        title: "War Pigs (slow part)",
+        artist: "Black Sabbath",
+        BPM: "110",
+        duration: "0:51",
+    },
+    {
+        title: "War Pigs (fast part)",
+        artist: "Black Sabbath",
+        BPM: "182",
+        duration: "1:25",
     },
     {
         title: "What's Up?",

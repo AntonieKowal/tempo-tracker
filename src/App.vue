@@ -69,7 +69,7 @@
 
 		<v-main>
 			<!-- <HelloWorld /> -->
-			<v-container>
+			<v-container style="min-height: 100%; height: 100%;">
 				<router-view></router-view>
 			</v-container>
 		</v-main>
@@ -80,10 +80,8 @@
 <script>
 export default {
 	name: 'App',
-
 	components: {
 	},
-
 	data: () => ({
 		links: [
 			'Song List',

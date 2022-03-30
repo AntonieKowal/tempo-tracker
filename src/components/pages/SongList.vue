@@ -1,5 +1,5 @@
 <template>
-	<v-simple-table fixed-header style="">
+	<v-simple-table fixed-header>
 		<template v-slot:default>
 			<thead>
 				<tr>
@@ -21,7 +21,7 @@
                     </td> -->
 				</tr>
                 <tr>
-                    <td></td>
+                    <td style="font-weight: bold;">Total Duration</td>
                     <td></td>
                     <td>{{totalDuration()}}</td>
                 </tr>
@@ -47,17 +47,19 @@ export default {
             this.$router.push({ path: '/song/' + url});
         },
         totalDuration() {
-            // let durationInSeconds = 0;
-            // const songDurationsArray = Songs.map(song => song.duration);
-            // let durationInSeconds = 0;
-            // console.log(songDurationsArray);
-            // const seconds = songDurationsArray.filter(song => {
-            //     let splitSong = song.split(':');
-            //     durationInSeconds += ((splitSong[0] * 60) + splitSong[1])
-            //     console.log(splitSong, durationInSeconds);
-
-            // })
-            // return seconds;
+            let durationInSeconds = 0;
+            for (let song of Songs) {
+                let duration = song.duration.split(':');
+                let seconds = (duration[0] * 1) * 60 + (duration[1] * 1);
+                durationInSeconds += seconds;
+            }
+            // https://bobbyhadz.com/blog/javascript-convert-seconds-to-hh-mm-ss
+            let duration = new Date(durationInSeconds * 1000).toISOString().slice(11, 19);
+            return duration;
+            // let hours = duration.getHours();
+            // let minutes = duration.getMinutes();
+            // let seconds = duration.getSeconds();
+            // return `${hours ? hours + ':' : ''}${minutes}:${seconds}`;
         }
     }
 };
