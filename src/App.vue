@@ -89,11 +89,11 @@ export default {
 		],
 		paths: {
 			'Song List': {
-				path: '/',
+				path: '/tempo-tracker/',
 				icon: 'playlist-music'
 			},
 			'Tempo Tap': {
-				path: '/tempo-tap',
+				path: '/tempo-tap/',
 				icon: 'music-note'
 			}
 		},

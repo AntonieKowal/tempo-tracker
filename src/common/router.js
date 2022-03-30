@@ -2,7 +2,7 @@ import VueRouter from 'vue-router';
 
 const routes = [
     {
-        path: '/',
+        path: '/tempo-tracker/',
         component: () => import('@/components/pages/SongList.vue'),
     },
     {
