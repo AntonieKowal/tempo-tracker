@@ -2,7 +2,7 @@ import VueRouter from 'vue-router';
 
 const routes = [
     {
-        path: '/tempo-tracker',
+        path: '/',
         component: () => import('@/components/pages/SongList.vue'),
     },
     {
@@ -20,7 +20,7 @@ const routes = [
 // Initialize our router
 const router = new VueRouter({
     routes,
-    mode: 'history'
+    mode: 'hash'
 })
 
 // router.beforeEach(async (to, from, next) => {
