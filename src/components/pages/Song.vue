@@ -2,13 +2,13 @@
 	<div class="d-flex flex-column" style="min-height: 100%; height: 100%;">
 		<v-row no-gutters>
 			<v-col cols="4">
-				<v-switch v-model="settings.flash" label="Flash" color="orange" hide-details @change="blink('flash', $event)"></v-switch>
+				<v-switch v-model="settings.flash" label="broken" color="orange" hide-details @change="blink('flash', $event)" disabled></v-switch>
 			</v-col>
             <v-col cols="4">
 				<v-switch v-model="settings.steady" label="Steady" color="green" hide-details @change="blink('steady', $event)"></v-switch>
 			</v-col>
             <v-col cols="4">
-				<v-switch v-model="settings.audio" label="Audio" color="primary" hide-details></v-switch>
+				<v-switch v-model="settings.audio" label="also broken lol" color="primary" hide-details disabled></v-switch>
 			</v-col>
 		</v-row>
         <v-divider class='mt-4 mb-2'></v-divider>
