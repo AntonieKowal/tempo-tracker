@@ -82,7 +82,7 @@ export default {
         },
         initIntervalFunctions(){
             let blinkerEl = this.$refs.blinker;
-            let interval = 500//60 / parseInt(this.songData.BPM) * 1000 | 0;
+            let interval = 60 / parseInt(this.songData.BPM) * 1000 | 0;
             let flashDuration = 50 //ms
 
             // Resource for self-correcting drift from inaccurate setTimeout
@@ -92,7 +92,6 @@ export default {
 
                 const flash = () => {
                     // DOM logic
-                    
                     blinkerEl.style.display = "block";
                     setInterval(() => blinkerEl.style.display = "none", flashDuration);
 

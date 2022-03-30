@@ -1,7 +1,7 @@
 .DS_Store
 node_modules
-/dist
-
+# /dist
+# https://learnvue.co/2020/09/how-to-deploy-your-vue-app-to-github-pages/#deploying-your-vue-project
 
 # local env files
 .env.local

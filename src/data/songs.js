@@ -51,7 +51,7 @@ export default [
     {
         title: "Paranoid",
         artist: "Black Sabbath",
-        BPM: "160",
+        BPM: "167",
         duration: "2:48",
     },
     {
