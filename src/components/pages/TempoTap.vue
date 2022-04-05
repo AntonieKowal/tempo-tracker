@@ -1,11 +1,12 @@
 <template>
-	<div class="d-flex flex-column" style="min-height: 100%; height: 100%;">
+	<div class="d-flex flex-column" style="min-height: 100%; height: 100%; user-select: none;">
 		<v-row no-gutters>
 			<v-col cols="2">
 				<v-btn
 					color="cyan"
 					small
 					@click="bpm--"
+					style="touch-action: manipulation"
 				>
 					<v-icon color="white">
 						mdi-minus
@@ -24,6 +25,7 @@
 					color="cyan"
 					small
 					@click="bpm++"
+					style="touch-action: manipulation"
 				>
 					<v-icon color="white">
 						mdi-plus
