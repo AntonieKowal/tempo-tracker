@@ -1,63 +1,158 @@
 <template>
-    <v-container>
-        Tempo Tap
-    </v-container>
+	<div class="d-flex flex-column" style="min-height: 100%; height: 100%;">
+		<v-row no-gutters>
+			<v-col cols="2">
+				<v-btn
+					color="cyan"
+					small
+					@click="bpm--"
+				>
+					<v-icon color="white">
+						mdi-minus
+					</v-icon>
+				</v-btn>
+			</v-col>
+			<v-col cols="3">
+				<v-text-field
+					v-model='bpm'
+					number
+					hide-details
+				></v-text-field>
+			</v-col>
+			<v-col cols="2">
+				<v-btn
+					color="cyan"
+					small
+					@click="bpm++"
+				>
+					<v-icon color="white">
+						mdi-plus
+					</v-icon>
+				</v-btn>
+			</v-col>
+            <v-col cols="5">
+				<v-btn
+					color="green"
+					class="white--text"
+					@mousedown='tap'
+					block
+				>TAP</v-btn>
+			</v-col>
+		</v-row>
+		
+		
+		<v-row no-gutters>
+			<v-col cols="4">
+			</v-col>
+            <v-col cols="4">
+			</v-col>
+            <v-col cols="4">
+			</v-col>
+		</v-row>
+        <v-divider class='my-2'></v-divider>
+        <!-- <v-row no-gutters>
+            <v-col cols="9">
+                <span style="font-weight: 500;">{{songData.title}}</span> by <span>{{songData.artist}}</span>
+            </v-col>
+            <v-spacer></v-spacer>
+            <v-col cols="3" class="text-right">
+                BPM: <span style="font-weight: bold; font-size: 12pt;">{{songData.BPM}}</span>
+            </v-col>
+        </v-row> -->
+        <div class="blink-container">
+            <div class="blinker" ref="blinker"></div>
+        </div>
+
+	</div>
 </template>
 
 <script>
-  export default {
-    name: 'TempoTap',
-    data: () => ({
-      ecosystem: [
-        {
-          text: 'vuetify-loader',
-          href: 'https://github.com/vuetifyjs/vuetify-loader',
-        },
-        {
-          text: 'github',
-          href: 'https://github.com/vuetifyjs/vuetify',
-        },
-        {
-          text: 'awesome-vuetify',
-          href: 'https://github.com/vuetifyjs/awesome-vuetify',
-        },
-      ],
-      importantLinks: [
-        {
-          text: 'Documentation',
-          href: 'https://vuetifyjs.com',
-        },
-        {
-          text: 'Chat',
-          href: 'https://community.vuetifyjs.com',
-        },
-        {
-          text: 'Made with Vuetify',
-          href: 'https://madewithvuejs.com/vuetify',
-        },
-        {
-          text: 'Twitter',
-          href: 'https://twitter.com/vuetifyjs',
-        },
-        {
-          text: 'Articles',
-          href: 'https://medium.com/vuetify',
-        },
-      ],
-      whatsNext: [
-        {
-          text: 'Explore components',
-          href: 'https://vuetifyjs.com/components/api-explorer',
-        },
-        {
-          text: 'Select a layout',
-          href: 'https://vuetifyjs.com/getting-started/pre-made-layouts',
-        },
-        {
-          text: 'Frequently Asked Questions',
-          href: 'https://vuetifyjs.com/getting-started/frequently-asked-questions',
-        },
-      ],
-    }),
-  }
+export default {
+	name: 'TempoTap',
+	data: () => ({
+		clicksArray: [],
+		bpm: 0,
+		differences: [],
+		timeTaken: 0,
+		interval: null
+	}),
+	methods: {
+		tap() {
+			if (this.clicksArray.length < 6) {
+				this.clicksArray.push(Date.now());
+			} else {
+				this.clicksArray.shift();
+				this.clicksArray.push(Date.now());
+			}
+
+			this.differences = [];
+			this.clicksArray.forEach((e, i) => {
+				if (i < this.clicksArray.length - 1) this.differences.push(this.clicksArray[i + 1] - this.clicksArray[i]);
+			});
+
+			this.timeTaken = this.differences.filter((e) => e != null).reduce((f, s) => f + s);
+			this.bpm = ((60 * 1000) / this.timeTaken) * this.differences.length | 0;
+		},
+		flash() {
+			clearInterval(this.interval);
+
+			let blinkerEl = this.$refs.blinker;
+            let interval = 60 / parseInt(this.bpm) * 1000 | 0;
+
+            const steady = () => {
+				// DOM logic
+				if (blinkerEl.style.display == "none") {
+					blinkerEl.style.display = "block"
+				} else {
+					blinkerEl.style.display = "none";
+				}
+
+				// Account for setInterval drift
+				let drift = Date.now() - expected;
+				expected += interval;
+				console.log(drift);
+				console.log(interval - drift);
+				this.interval = setTimeout(steady, interval - drift);
+            }
+
+			let expected = Date.now() + interval;
+            this.interval = setTimeout(steady, interval);
+
+		},
+	},
+	watch: {
+		bpm(newVal, oldVal) {
+			console.log(newVal, oldVal);
+			this.flash();
+		}
+	}
+};
 </script>
+
+<style scoped>
+.v-text-field {
+    padding-top: 0;
+    margin-top: 0;
+	margin-right: 12px;
+}
+
+.blink-container {
+    border: 1px solid black;
+    flex-grow: 2;
+}
+
+.blinker {
+    width: 100%;
+    height: 100%;
+    background: black;
+    display: none;
+}
+
+.row {
+    flex: none;
+}
+
+.v-btn {
+	height: 100% !important;
+}
+</style>

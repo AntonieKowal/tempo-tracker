@@ -113,3 +113,13 @@ export default {
 	}),
 };
 </script>
+
+<style scoped>
+body {
+	/* Attempt at handling iOS bottom bar working poorly with vh */
+	position: fixed;
+    height: 100%;
+    width: 100vw;
+	overflow-y: auto;
+}
+</style>

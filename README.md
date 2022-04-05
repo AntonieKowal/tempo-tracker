@@ -2,6 +2,8 @@
 
 This project is a quickly and messily developed tool made for my band and I to use to help us practice by being a convenient means of tracking the Tempo of the songs we cover.
 
+https://antoniekowal.github.io/tempo-tracker/
+
 ## Project setup
 ```
 npm install
