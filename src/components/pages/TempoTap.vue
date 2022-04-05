@@ -36,6 +36,7 @@
 					class="white--text"
 					@mousedown='tap'
 					block
+					style="touch-action: manipulation"
 				>TAP</v-btn>
 			</v-col>
 		</v-row>
