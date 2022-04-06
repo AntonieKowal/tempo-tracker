@@ -1,4 +1,5 @@
 <template>
+
 	<v-simple-table fixed-header>
 		<template v-slot:default>
 			<thead>

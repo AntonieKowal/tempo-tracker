@@ -126,7 +126,7 @@ export default {
 	watch: {
 		bpm(newVal, oldVal) {
 			console.log(newVal, oldVal);
-			this.flash();
+			if (newVal && newVal > 0) this.flash();
 		}
 	}
 };
